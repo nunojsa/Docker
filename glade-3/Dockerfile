@@ -9,7 +9,7 @@ RUN tar -xf /home/docker/glade3_8.tar.xz -C /home/docker
 RUN rm -f /home/docker/glade3_8.tar.xz
 
 # build now
-RUN cd /home/docker/glade3-3.8.6 && ./autogen.sh && make -j8 && make install
+RUN cd /home/docker/glade3-3.8.6 && ./autogen.sh && make -j$(nproc) && make install
 RUN ldconfig
 
 # start dbus daemon
