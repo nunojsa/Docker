@@ -3,6 +3,7 @@ UBUNTU_DIR := ubuntu-dev
 GLADE_DIR := glade-3
 TARGETS = ubuntu-dev-18.04 glade-3
 CLEAN_TARGETS := $(addprefix rm_, $(TARGETS))
+PREFIX ?= /usr/local
 
 ifeq ($(strip $(DOCKER_VERSION)),)
 $(info Make sure docker is installed!)
@@ -23,6 +24,11 @@ $(GLADE_DIR)/glade-3: $(UBUNTU_DIR)/ubuntu-dev-18.04 $(GLADE_DIR)/Dockerfile
 
 ubuntu-dev-18.04: $(UBUNTU_DIR)/ubuntu-dev-18.04
 glade-3: $(GLADE_DIR)/glade-3
+
+install:
+	@install -d $(PREFIX)/bin
+	@echo	"       INSTALL drun"
+	@install -m 755 drun $(PREFIX)/bin
 
 define do_rm
 rm_$(1):
@@ -47,3 +53,5 @@ help:
 	@echo "	all 			Default target. Build all images;"
 	@echo "	ubuntu-dev-18.04	Build ubuntu18.04 based imaged with minimal set of dev tools;"
 	@echo "	glade-3			Build image to run glade-3;"
+	@echo "Install targets:"
+	@echo " install			Install drun utility script;"

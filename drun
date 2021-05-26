@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec docker run --rm -ti -v $HOME:$HOME -v $PWD:$PWD -w $PWD \
+	-u $UID \
+	"$@"
