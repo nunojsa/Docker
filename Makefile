@@ -54,4 +54,4 @@ help:
 	@echo "	ubuntu-dev-18.04	Build ubuntu18.04 based imaged with minimal set of dev tools;"
 	@echo "	glade-3			Build image to run glade-3;"
 	@echo "Install targets:"
-	@echo " install			Install drun utility script;"
+	@echo "	install			Install drun utility script;"
