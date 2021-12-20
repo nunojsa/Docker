@@ -15,8 +15,8 @@ endif
 
 all: $(TARGETS)
 
-$(UBUNTU_DIR)/ubuntu-dev-18.04: $(UBUNTU_DIR)/Dockerfile
-	@docker build $(ARGS) -t ubuntu-dev:18.04 -f $(UBUNTU_DIR)/Dockerfile .
+$(UBUNTU_DIR)/ubuntu-dev-18.04: $(UBUNTU_DIR)/Dockerfile.18.04
+	@docker build $(ARGS) -t ubuntu-dev:18.04 -f $(UBUNTU_DIR)/Dockerfile.18.04 .
 	@touch $@
 
 $(GLADE_DIR)/glade-3: $(UBUNTU_DIR)/ubuntu-dev-18.04 $(GLADE_DIR)/Dockerfile
