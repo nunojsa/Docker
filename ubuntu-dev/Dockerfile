@@ -3,7 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y make gcc autoconf build-essential  \
 		locales locales-all unzip gawk wget python3.8 python3-pip python3-invoke git \
-		net-tools vim lsb-release cmake
+		net-tools vim lsb-release cmake flex bison libyaml-dev pkg-config
 
 # set proper locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -21,3 +21,9 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN useradd -ms /bin/bash docker
 RUN echo "root:docker" | chpasswd
 
+# Install DT schema in an entry point. This is done like this to make
+# sure the latest version is always taken... This can be removed later
+# if it becomes to annoying!
+COPY install_schema.sh /usr/local/bin/
+RUN chmod 755 /usr/local/bin/install_schema.sh
+ENTRYPOINT ["/usr/local/bin/install_schema.sh"]
