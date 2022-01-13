@@ -5,6 +5,7 @@ OSC_DIR := osc-mingw
 TARGETS = ubuntu-dev-18.04 ubuntu-dev glade-3 osc-mingw
 CLEAN_TARGETS := $(addprefix rm_, $(TARGETS))
 UBUNTU_DEV_DEPS := $(UBUNTU_DIR)/install_schema.sh
+OSC_DEPS := $(OSC_DIR)/get_depends.sh $(UBUNTU_DIR)/ubuntu-dev-18.04
 PREFIX ?= /usr/local
 Q := @
 
@@ -36,7 +37,7 @@ endef
 
 # define build targets.
 $(eval $(call do_image,glade-3,$(GLADE_DIR),$(UBUNTU_DIR)/ubuntu-dev-18.04))
-$(eval $(call do_image,osc-mingw,$(OSC_DIR),$(UBUNTU_DIR)/ubuntu-dev-18.04))
+$(eval $(call do_image,osc-mingw,$(OSC_DIR),$(OSC_DEPS)))
 $(eval $(call do_image,ubuntu-dev,$(UBUNTU_DIR),$(UBUNTU_DEV_DEPS)))
 $(eval $(call do_image,ubuntu-dev,$(UBUNTU_DIR),,18.04))
 
