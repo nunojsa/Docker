@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y make gcc autoconf build-essential  \
-		locales locales-all unzip gawk wget python3.8 python3-pip python3-invoke git \
+		locales locales-all unzip gawk wget python3 python3-pip python3-invoke git \
 		net-tools vim lsb-release cmake flex bison libyaml-dev pkg-config swig sudo
 
 # set proper locale
