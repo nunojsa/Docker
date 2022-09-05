@@ -3,7 +3,8 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y make gcc autoconf build-essential  \
 		locales locales-all unzip gawk wget python3 python3-pip python3-invoke git \
-		net-tools vim lsb-release cmake flex bison libyaml-dev pkg-config swig sudo
+		net-tools vim lsb-release cmake flex bison libyaml-dev pkg-config swig sudo \
+		bc libssl-dev gcc-aarch64-linux-gnu gcc-arm-linux-gnueabihf
 
 # set proper locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
