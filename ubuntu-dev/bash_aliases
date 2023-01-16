@@ -1,0 +1,1 @@
+alias dt-schema-install='pip3 install git+https://github.com/devicetree-org/dt-schema.git@master'

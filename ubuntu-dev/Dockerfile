@@ -22,9 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN useradd -ms /bin/bash docker
 RUN echo "docker:docker" | chpasswd && adduser docker sudo
 
-# Install DT schema in an entry point. This is done like this to make
-# sure the latest version is always taken... This can be removed later
-# if it becomes to annoying!
-COPY install_schema.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/install_schema.sh
-ENTRYPOINT ["/usr/local/bin/install_schema.sh"]
+# Add an alias to easily install latest dt-schema. Also make sure $HOME/.local/bin
+# is in PATH
+RUN echo "export PATH=$PATH:/home/docker/.local/bin" >> /home/docker/.bashrc
+COPY bash_aliases /home/docker/.bash_aliases
